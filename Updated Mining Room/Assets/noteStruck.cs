@@ -5,7 +5,7 @@ using UnityEngine;
 public class noteStruck : MonoBehaviour {
 
     //public for the note to be played
-
+    public float semitone_offset = 0;
     bool miss = true;
     AudioSource AS;
 
@@ -13,6 +13,7 @@ public class noteStruck : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         AS = GetComponent<AudioSource>();
+        Destroy(gameObject, 15f);
 	}
 	
 	// Update is called once per frame
@@ -23,9 +24,14 @@ public class noteStruck : MonoBehaviour {
     //determine distance away from
    public void musicNoteStruck()
     {
-        AS.Play();
-        miss = false;
-        print("play NOTE");
+        if (miss)
+        {
+            AS.pitch = Mathf.Pow(2f, semitone_offset / 12.0f);
+            AS.Play();
+            miss = false;
+            print("play NOTE");
+            gameObject.GetComponent<Renderer>().enabled = false;
+        }
     }
 
 }
