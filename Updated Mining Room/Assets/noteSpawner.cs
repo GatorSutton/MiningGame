@@ -32,8 +32,12 @@ public class noteSpawner : MonoBehaviour {
 
     private void OnMouseDown()
     {
-       noteStruck nS = Instantiate(musicNotePrefab, transform).GetComponent<noteStruck>();
-        nS.semitone_offset = currentNote.offset;
-        
+        spawnNote(currentNote);
+    }
+
+    public void spawnNote(Note note)
+    {
+        noteStruck nS = Instantiate(musicNotePrefab, transform).GetComponent<noteStruck>();
+        nS.semitone_offset = note.offset;
     }
 }

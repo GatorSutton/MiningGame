@@ -6,6 +6,7 @@ public class noteStruck : MonoBehaviour {
 
     //public for the note to be played
     public float semitone_offset = 0;
+    public float octave;
     bool miss = true;
     AudioSource AS;
 
@@ -26,7 +27,7 @@ public class noteStruck : MonoBehaviour {
     {
         if (miss)
         {
-            AS.pitch = Mathf.Pow(2f, semitone_offset / 12.0f);
+            AS.pitch = Mathf.Pow(2f, semitone_offset / 12.0f) * octave;
             AS.Play();
             miss = false;
             print("play NOTE");
